@@ -441,6 +441,22 @@ type UserFeedResponse struct {
 	NextMaxID           string `json:"next_max_id"`
 }
 
+type CarouselMedia struct {
+	ID            string        `json:"id"`
+	MediaType     int           `json:"media_type"`
+	ImageVersions ImageVersions `json:"image_versions2"`
+	VideoVersions []struct {
+		URL    string `json:"url"`
+		Width  int    `json:"width"`
+		Type   int    `json:"type"`
+		Height int    `json:"height"`
+	} `json:"video_versions"`
+	OriginalWidth    int    `json:"original_width"`
+	OriginalHeight   int    `json:"original_height"`
+	Pk               int64  `json:"pk"`
+	CarouselParentID string `json:"carousel_parent_id"`
+}
+
 // Item user feeds item
 type Item struct {
 	TakenAt         int64         `json:"taken_at"`
@@ -466,21 +482,7 @@ type Item struct {
 		IsVerified                 bool   `json:"is_verified"`
 		IsPrivate                  bool   `json:"is_private"`
 	} `json:"user"`
-	CarouselMedia []struct {
-		ID            string        `json:"id"`
-		MediaType     int           `json:"media_type"`
-		ImageVersions ImageVersions `json:"image_versions2"`
-		VideoVersions []struct {
-			URL    string `json:"url"`
-			Width  int    `json:"width"`
-			Type   int    `json:"type"`
-			Height int    `json:"height"`
-		} `json:"video_versions"`
-		OriginalWidth    int    `json:"original_width"`
-		OriginalHeight   int    `json:"original_height"`
-		Pk               int64  `json:"pk"`
-		CarouselParentID string `json:"carousel_parent_id"`
-	} `json:"carousel_media"`
+	CarouselMedia                []CarouselMedia   `json:"carousel_media"`
 	OrganicTrackingToken         string            `json:"organic_tracking_token"`
 	LikeCount                    int               `json:"like_count"`
 	TopLikers                    []interface{}     `json:"top_likers"`
